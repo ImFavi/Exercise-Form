@@ -1,0 +1,50 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: #23212C;
+    color: white;
+}
+
+header{
+    background-color: #393647;
+}
+
+h3{
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+label{
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+span{
+    color: #E56AA1;
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
+
+
+/* Boton Customizado */
+.btn-custom{
+    padding: 10px 30px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #837AED; 
+    border-radius: 50px;
+}
+
+.btn-custom:hover{
+    background-color: #6f64c5;
+  }
+
+footer{
+    background-color: #393647;
+    padding: 20px 0;
+}

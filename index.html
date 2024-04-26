@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favio Perez</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Fuentes de letra de Google -->
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   
+    <!-- Javascript -->
+    <script>
+
+    // Cursor
+    function CursorRut(){
+        document.getElementById('rut').focus();
+    }
+
+    // Validar y crear carta
+    function CrearCarta(){
+        // Definir Variables
+        let a = document.getElementById('rut').value;
+        let b = document.getElementById('nom').value;
+        let c = document.getElementById('appa').value;
+        let d = document.getElementById('apma').value;
+        let e = document.getElementById('mail').value;
+        let f = parseInt(document.getElementById('fono').value);
+        let g = parseInt(document.getElementById('sexo').value);
+        let h = document.getElementById('fecnac').value;
+
+        let validacion = false;
+
+        // Validaciones
+        if(a.length != 10){
+            alert('El rut NO debe contener mas o menos de 10 caracteres');
+            validacion = false;
+        } else{
+            if(b.length < 3 || c.length < 3 || d.length < 3){
+                alert('El nombre, apellido paterno y apellido materno NO deben de contener menos de 3 caracteres');
+                validacion = false;
+            } else{
+                if(e == ''){
+                    alert('El campo de "Correo electrónico" NO puede quedar vacio');
+                    validacion = false;
+                } else{
+                    if(isNaN(f) || f.toString().length != 9){
+                        alert('El campo de "Celular" NO puede quedar vacio ni ser menor o mayor a 9 caracteres');
+                        validacion = false;
+                    } else{
+                        if(g < 1 || g > 5){
+                            alert('Debe seleccionar su genero');
+                            validacion = false;
+                        } else{
+                            validacion = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Definir genero
+        if(g == 1){
+            g = "Hombre";
+        } else{
+            if(g == 2){
+                g = "Mujer";
+            } else{
+                if(g == 3){
+                    g = "No-Binario";
+                } else{
+                    if(g == 4){
+                        g = "Prefiero no decirlo";
+                    } else{
+                        if(g == 5){
+                            g = "Otro...";
+                        }
+                    }
+                }
+            }
+        }
+
+        // Carta
+        if(validacion == false){
+            document.getElementById('carta').value = ""
+        } else{
+            document.getElementById('carta').value = "Rut: " + a + "\n" +
+                                                    "Nombre: " + b + "\n" +
+                                                    "Apellido Paterno: " + c + "\n" +
+                                                    "Apellido Materno: " + d + "\n" +
+                                                    "Correo electrónico: " + e + "\n" +
+                                                    "Celular: " + f + "\n" +
+                                                    "Género: " + g + "\n" +
+                                                    "Fecha de nacimiento: " + h;
+        }
+    }
+
+    function LimpiarCampos(){
+        document.getElementById('rut').value = '';
+        document.getElementById('nom').value = '';
+        document.getElementById('appa').value = '';
+        document.getElementById('apma').value = '';
+        document.getElementById('mail').value = '';
+        document.getElementById('fono').value = 0;
+        document.getElementById('sexo').value = 0;
+        document.getElementById('fecnac').value = '';
+    }
+    
+
+    </script>
+</head>
+<body onload="CursorRut()">
+    <header>
+        <h3 class="text-center">Carta de postulación</h3>
+    </header>
+
+    <div class="container">
+        <form>
+            <!-- Rut -->
+            <div class="form-group">
+                <label for="rut">Rut <span>(*)</span>:</label>
+                <input class="form-control" type="text" id="rut" name="rut"  placeholder="Ingrese su rut... (XXXXXXXX-X)" required minlength="10" maxlength="10">
+            </div>
+
+            <!-- Nombre -->
+            <div class="form-group">
+                <label for="nom">Nombre <span>(*)</span>:</label>
+                <input class="form-control" type="text" id="nom" name="nom" placeholder="Ingrese su nombre..." required minlength="3">
+            </div>
+
+            <!-- Apellido Paterno -->
+            <div class="form-group">
+                <label for="appa">Apellido Paterno <span>(*)</span>: </label>
+                <input class="form-control" type="text" id="appa" name="appa" placeholder="Ingrese su apellido paterno..." required minlength="3">
+            </div>
+
+            <!-- Apellido Materno -->
+            <div class="form-group">
+                <label for="apma">Apellido Materno <span>(*)</span>: </label>
+                <input class="form-control" type="text" id="apma" name="apma" placeholder="Ingrese su apellido materno..." required minlength="3">
+            </div>
+
+            <!-- Correo -->
+            <div class="form-group">
+                <label for="mail">Correo electrónico <span>(*)</span>: </label>
+                <input class="form-control" type="email" id="mail" name="mail" placeholder="Ingrese su correo electrónico..." required>
+            </div>
+            
+            <!-- Celular -->
+            <div class="form-group">
+                <label for="fono">Celular <span>(*)</span>: </label>
+                <input class="form-control" type="number" id="fono" name="fono" placeholder="Ingrese su numero de celular..." minlength="9" maxlength="9" required>
+            </div>
+
+            <!-- Genero -->
+            <div class="form-group">
+                <label for="sexo">Genero <span>(*)</span>: </label>
+                <select class="form-control" name="sexo" id="sexo" name="sexo" required>
+                    <option value="0" hidden>Seleccione su genero...</option>
+                    <option value="1">Hombre</option>
+                    <option value="2">Mujer</option>
+                    <option value="3">No-Binario</option>
+                    <option value="4">Prefiero no decirlo</option>
+                    <option value="5">Otro...</option>
+                </select>
+            </div>
+
+            <!-- Fecha de nacimiento -->
+            <div class="form-group">
+                <label for="fecnac">Fecha de nacimiento: </label>
+                <input class="form-control" type="date" id="fecnac" name="fecnac">
+            </div>
+
+            <!-- Botones para enviar y limpiar espacios -->
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <input type="button" value="Crear Carta" class="btn btn-custom" onclick="CrearCarta()">
+                </div>
+                <div class="col-auto">
+                    <input type="button" value="Limpiar" class="btn btn-custom" onclick="LimpiarCampos()">
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
+        <!-- TextArea-->
+        <div style="margin: 50px 0;">
+            <h3 class="text-center">Carta</h3>
+            <textarea class="form-control" name="carta" id="carta" cols="30" rows="10" disabled></textarea>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <a href="https://github.com/ImFavi" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white  " class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+            </svg>
+        </a>
+    </footer>
+    
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
